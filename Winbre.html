@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>National Exam Prep System - Enhanced</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* General Reset and Typography */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f2f5;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        /* Header Styling */
+        .header {
+            background-color: #3b5998; /* Deep Blue */
+            color: white;
+            padding: 25px 20px;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 2.2em;
+            letter-spacing: 1px;
+        }
+        .header p {
+            margin: 5px 0 0;
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+
+        /* Main Layout Container */
+        .container {
+            display: flex;
+            max-width: 1400px;
+            margin: 30px auto;
+            background-color: white;
+            border-radius: 12px;
+            overflow: hidden; /* Ensures sidebar border is clean */
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            min-height: 85vh;
+        }
+
+        /* Sidebar (Navigation) */
+        .sidebar {
+            width: 280px;
+            background-color: #ffffff;
+            padding: 25px 0;
+            border-right: 1px solid #e0e0e0;
+            flex-shrink: 0;
+        }
+        .sidebar h3 {
+            color: #3b5998;
+            padding: 0 20px;
+            margin-top: 0;
+            border-bottom: 2px solid #3b5998;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+            font-size: 1.3em;
+        }
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+        }
+        .sidebar ul li a {
+            display: flex;
+            align-items: center;
+            padding: 12px 20px;
+            text-decoration: none;
+            color: #555;
+            border-left: 5px solid transparent;
+            transition: all 0.2s ease;
+            font-size: 1.05em;
+        }
+        .sidebar ul li a i {
+            margin-right: 10px;
+            color: #888;
+        }
+        .sidebar ul li a:hover {
+            background-color: #e6f0ff;
+            color: #3b5998;
+            border-left: 5px solid #3b5998;
+        }
+        .sidebar ul li a.active {
+            background-color: #3b5998;
+            color: white;
+            border-left: 5px solid #1a3c75;
+        }
+        .sidebar ul li a.active i {
+             color: white;
+        }
+
+        /* Main Content Area */
+        .content {
+            flex-grow: 1;
+            padding: 40px;
+        }
+        .content h2 {
+            color: #17a2b8; /* Cyan/Teal color for headings */
+            border-bottom: 2px solid #17a2b8;
+            padding-bottom: 10px;
+            margin-top: 0;
+            margin-bottom: 25px;
+            font-size: 1.8em;
+        }
+        
+        /* Welcome Block Styling */
+        #welcome-section {
+            background-color: #fff3cd;
+            color: #856404;
+            border: 1px solid #ffeeba;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+        }
+        #welcome-section p {
+            margin-bottom: 0;
+        }
+
+        /* Resource Items */
+        .resource-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border: 1px solid #e9ecef;
+            padding: 18px;
+            margin-bottom: 15px;
+            border-radius: 8px;
+            background-color: #ffffff;
+            transition: box-shadow 0.2s;
+        }
+        .resource-item:hover {
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        }
+        .resource-item h4 {
+            margin: 0;
+            color: #3b5998;
+            font-size: 1.2em;
+        }
+        .resource-item p {
+            margin: 5px 0 0;
+            color: #6c757d;
+        }
+        
+        /* Action Button (Download/Watch) */
+        .resource-action a {
+            background-color: #28a745; /* Green for action */
+            color: white;
+            padding: 10px 15px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            display: inline-flex;
+            align-items: center;
+            transition: background-color 0.2s;
+        }
+        .resource-action a:hover {
+            background-color: #1e7e34;
+        }
+        .resource-action a i {
+            margin-right: 8px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <h1>🎓 National Exam Prep Portal</h1>
+        <p>Your comprehensive resource hub for Grades 9 through 12. Success starts here!</p>
+    </div>
+
+    <div class="container">
+        <div class="sidebar">
+            <h3>Grade Levels & Resources</h3>
+            <ul id="grade-menu">
+                <li><a href="#" data-grade="9" data-type="books"><i class="fas fa-book"></i> Grade 9 Books</a></li>
+                <li><a href="#" data-grade="9" data-type="videos"><i class="fas fa-video"></i> Grade 9 Videos</a></li>
+                <li><a href="#" data-grade="10" data-type="books"><i class="fas fa-book"></i> Grade 10 Books</a></li>
+                <li><a href="#" data-grade="10" data-type="videos"><i class="fas fa-video"></i> Grade 10 Videos</a></li>
+                <li><a href="#" data-grade="11" data-type="books"><i class="fas fa-book"></i> Grade 11 Books</a></li>
+                <li><a href="#" data-grade="11" data-type="videos"><i class="fas fa-video"></i> Grade 11 Videos</a></li>
+                <li><a href="#" data-grade="12" data-type="books" class="active"><i class="fas fa-book"></i> Grade 12 Books</a></li>
+                <li><a href="#" data-grade="12" data-type="videos"><i class="fas fa-video"></i> Grade 12 Videos</a></li>
+            </ul>
+        </div>
+
+        <div class="content">
+            <h2 id="content-title">Welcome to the Exam Prep Portal!</h2>
+            
+            <div id="welcome-section">
+                <p><strong>Get Started:</strong> Use the navigation menu on the left to select your grade and resource type (Books or Videos). We have carefully curated materials to help you excel in the national examination.</p>
+            </div>
+            
+            <div id="resource-list">
+                </div>
+            
+        </div>
+    </div>
+
+    <script>
+        // --- EXPANDED SAMPLE DATA ---
+        // This is the core data structure. Fill this out with your actual PDF links and Video URLs.
+        const resources = {
+            '9': {
+                'books': [
+                    { title: 'Grade 9 Mathematics Textbook (Full Syllabus)', link: 'pdf/math_g9.pdf', subject: 'Mathematics' },
+                    { title: 'Grade 9 Science Revision Guide (Biology Focus)', link: 'pdf/science_g9.pdf', subject: 'Science' }
+                ],
+                'videos': [
+                    { title: 'Introduction to Algebra Basics - Video 1', link: 'https://youtube.com/watch?v=algebra9_1', subject: 'Mathematics' },
+                    { title: 'Key Physics Concepts for Grade 9', link: 'https://youtube.com/watch?v=physics9_key', subject: 'Physics' }
+                ]
+            },
+            '10': {
+                'books': [
+                    { title: 'Grade 10 History Summary Notes', link: 'pdf/history_g10_notes.pdf', subject: 'History' },
+                    { title: 'Chemistry Workbook - Stoichiometry', link: 'pdf/chem_g10_work.pdf', subject: 'Chemistry' }
+                ],
+                'videos': [
+                    { title: 'Understanding World War I - Causes and Effects', link: 'https://youtube.com/watch?v=ww1_g10_doc', subject: 'History' }
+                ]
+            },
+            '11': {
+                'books': [
+                    { title: 'Advanced English Grammar Practice', link: 'የህንፃ መመሪያና ስታንዳርድ 2015.pdf', subject: 'English' },
+                    { title: 'Physics: Electricity and Magnetism Handbook', link: 'pdf/physics_g11_em.pdf', subject: 'Physics' }
+                ],
+                'videos': [
+                    { title: 'Differential Calculus Introduction', link: 'https://www.youtube.com/watch?v=RjXWPrBv58U', subject: 'Mathematics' }
+                ]
+            },
+            '12': {
+                'books': [
+                    { title: 'Calculus Complete Formula Sheet & Examples', link: 'pdf/calculus_g12.pdf', subject: 'Mathematics' },
+                    { title: 'National Exam Model Questions - Physics', link: 'pdf/g12_physics_exam.pdf', subject: 'Physics' },
+                    { title: 'Biology: Cell Structure and Function Detailed Notes', link: 'pdf/bio_g12_cells.pdf', subject: 'Biology' },
+                    { title: 'Economics: Macro vs Micro Revision', link: 'pdf/econ_g12_revision.pdf', subject: 'Economics' }
+                ],
+                'videos': [
+                    { title: 'Advanced Integration Techniques - Exam Focus', link: 'https://youtube.com/watch?v=integration_adv', subject: 'Mathematics' },
+                    { title: 'Organic Chemistry Reactions Explained', link: 'https://youtube.com/watch?v=organic_chem', subject: 'Chemistry' }
+                ]
+            }
+        };
+        // --- END OF SAMPLE DATA ---
+
+
+        const menuItems = document.querySelectorAll('#grade-menu a');
+        const contentTitle = document.getElementById('content-title');
+        const resourceList = document.getElementById('resource-list');
+        const welcomeSection = document.getElementById('welcome-section');
+
+        // Main logic to switch content on menu click
+        menuItems.forEach(item => {
+            item.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const grade = this.getAttribute('data-grade');
+                const type = this.getAttribute('data-type'); // 'books' or 'videos'
+                
+                // Update Active Menu Item
+                menuItems.forEach(i => i.classList.remove('active'));
+                this.classList.add('active');
+
+                // Load Content
+                loadContent(grade, type);
+            });
+        });
+
+        function loadContent(grade, type) {
+            welcomeSection.style.display = 'none'; // Hide welcome text once content is selected
+            
+            let html = '';
+            const resourceArray = resources[grade][type];
+            const typeDisplay = type.charAt(0).toUpperCase() + type.slice(1);
+            
+            // Update Title
+            contentTitle.textContent = `Grade ${grade} - ${typeDisplay} Resources`;
+            
+            if (resourceArray && resourceArray.length > 0) {
+                resourceArray.forEach(resource => {
+                    const actionText = type === 'books' ? 'Download PDF' : 'Watch Video';
+                    const iconClass = type === 'books' ? 'fas fa-download' : 'fas fa-play';
+                    
+                    html += `
+                        <div class="resource-item">
+                            <div>
+                                <h4>${resource.title}</h4>
+                                <p>Subject: <strong>${resource.subject}</strong></p>
+                            </div>
+                            <div class="resource-action">
+                                <a href="${resource.link}" target="_blank">
+                                    <i class="${iconClass}"></i> ${actionText}
+                                </a>
+                            </div>
+                        </div>
+                    `;
+                });
+            } else {
+                html = `<p>No ${type} have been added for Grade ${grade} yet. Please check back soon!</p>`;
+            }
+            
+            resourceList.innerHTML = html;
+        }
+
+        // Load default content on page load (Grade 12 Books)
+        // Find and trigger the click on the default menu item
+        const defaultItem = document.querySelector('[data-grade="12"][data-type="books"]');
+        if (defaultItem) {
+            defaultItem.click();
+        } else {
+            // Fallback for initial welcome view
+            contentTitle.textContent = "Welcome to the Exam Prep Portal!";
+            welcomeSection.style.display = 'block';
+        }
+    </script>
+
+</body>
+</html>
