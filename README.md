@@ -1,1 +1,297 @@
-# prohibited
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>National Exam Prep System - Homepage</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* --- GLOBAL STYLES --- */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f2f5;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        /* --- HEADER & NAVIGATION --- */
+        .header {
+            background-color: #3b5998; /* Deep Blue */
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 2.5em;
+        }
+        .header nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1.1em;
+            opacity: 0.9;
+            transition: opacity 0.2s;
+        }
+        .header nav a:hover {
+            opacity: 1;
+            text-decoration: underline;
+        }
+
+        /* --- HOMEPAGE SPECIFIC STYLES --- */
+        #homepage {
+            max-width: 1200px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+
+        /* Hero Section */
+        .hero-section {
+            background: linear-gradient(135deg, #3b5998, #1a3c75);
+            color: white;
+            padding: 60px 40px;
+            border-radius: 12px;
+            text-align: center;
+            margin-bottom: 40px;
+            box-shadow: 0 8px 15px rgba(0,0,0,0.2);
+        }
+        .hero-section h2 {
+            font-size: 2.8em;
+            margin-bottom: 10px;
+        }
+        .hero-section p {
+            font-size: 1.3em;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+        .cta-button {
+            background-color: #28a745; /* Green */
+            color: white;
+            padding: 15px 30px;
+            text-decoration: none;
+            border-radius: 8px;
+            font-size: 1.2em;
+            font-weight: bold;
+            transition: background-color 0.2s;
+        }
+        .cta-button:hover {
+            background-color: #1e7e34;
+        }
+
+        /* Image Slider/Carousel */
+        .slider-container {
+            position: relative;
+            max-width: 100%;
+            margin: 0 auto 40px;
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+        }
+        .slider-wrapper {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+        .slide {
+            min-width: 100%;
+            height: 400px; /* Standard slider height */
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+            font-size: 2em;
+            font-weight: bold;
+        }
+        
+        /* Slider Controls */
+        .slider-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            padding: 15px 10px;
+            cursor: pointer;
+            z-index: 10;
+            font-size: 1.5em;
+            transition: background 0.3s;
+        }
+        .slider-btn:hover {
+            background: rgba(0, 0, 0, 0.8);
+        }
+        #prev-btn { left: 0; border-radius: 0 5px 5px 0; }
+        #next-btn { right: 0; border-radius: 5px 0 0 5px; }
+
+        /* Feature Cards */
+        .features {
+            display: flex;
+            justify-content: space-around;
+            gap: 20px;
+            text-align: center;
+        }
+        .feature-card {
+            flex: 1;
+            padding: 30px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 10px rgba(0,0,0,0.05);
+            border-top: 5px solid #17a2b8;
+            transition: transform 0.2s;
+        }
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+        .feature-card i {
+            font-size: 2.5em;
+            color: #3b5998;
+            margin-bottom: 15px;
+        }
+        .feature-card h3 {
+            margin-top: 0;
+            color: #333;
+        }
+
+
+        /* --- MAIN APP SECTION (Hidden on Homepage) --- */
+        #app-portal {
+            display: none; /* Initially hidden */
+            max-width: 1400px;
+            margin: 30px auto;
+            background-color: white;
+            border-radius: 12px;
+            overflow: hidden; 
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            min-height: 85vh;
+        }
+        .container {
+            display: flex;
+        }
+        .sidebar {
+            width: 280px;
+            background-color: #ffffff;
+            padding: 25px 0;
+            border-right: 1px solid #e0e0e0;
+            flex-shrink: 0;
+        }
+        .sidebar h3 {
+            color: #3b5998;
+            padding: 0 20px;
+            margin-top: 0;
+            border-bottom: 2px solid #3b5998;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+            font-size: 1.3em;
+        }
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+        }
+        .sidebar ul li a {
+            display: flex;
+            align-items: center;
+            padding: 12px 20px;
+            text-decoration: none;
+            color: #555;
+            border-left: 5px solid transparent;
+            transition: all 0.2s ease;
+            font-size: 1.05em;
+        }
+        .sidebar ul li a i {
+            margin-right: 10px;
+            color: #888;
+        }
+        .sidebar ul li a:hover, .sidebar ul li a.active {
+            background-color: #e6f0ff;
+            color: #3b5998;
+            border-left: 5px solid #3b5998;
+        }
+        .sidebar ul li a.active {
+            background-color: #3b5998;
+            color: white;
+            border-left: 5px solid #1a3c75;
+        }
+        .sidebar ul li a.active i {
+             color: white;
+        }
+
+        /* Content Area */
+        .content {
+            flex-grow: 1;
+            padding: 40px;
+        }
+        .content h2 {
+            color: #17a2b8; 
+            border-bottom: 2px solid #17a2b8;
+            padding-bottom: 10px;
+            margin-top: 0;
+            margin-bottom: 25px;
+            font-size: 1.8em;
+        }
+
+        .resource-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border: 1px solid #e9ecef;
+            padding: 18px;
+            margin-bottom: 15px;
+            border-radius: 8px;
+            background-color: #ffffff;
+            transition: box-shadow 0.2s;
+        }
+        .resource-item:hover {
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        }
+        .resource-item h4 {
+            margin: 0;
+            color: #3b5998;
+            font-size: 1.2em;
+        }
+        .resource-item p {
+            margin: 5px 0 0;
+            color: #6c757d;
+        }
+        
+        .resource-action a {
+            background-color: #28a745; 
+            color: white;
+            padding: 10px 15px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            display: inline-flex;
+            align-items: center;
+            transition: background-color 0.2s;
+        }
+        .resource-action a:hover {
+            background-color: #1e7e34;
+        }
+        .resource-action a i {
+            margin-right: 8px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <nav>
+            <a href="#" id="nav-home">Home</a>
+            <a href="Winbre.html" id="nav-portal">Exam Portal</a>
+        </nav>
+    </div>
+
+    <section id="homepage">
+        <div class="hero-section">
+            <h2>Achieve Excellence in Your National Exam</h2>
+            <p>Your dedicated hub for Grades 9-12 books, videos, and study resources.</p>
+            <a href="Winbre.html" class="cta-button" id="start-studying-btn"><i class="fas fa-arrow-right"></i> Start Studying Now</a>
+        </div>
+
+        <div class="slider-container">
+            <div class="slider-wrapper"
